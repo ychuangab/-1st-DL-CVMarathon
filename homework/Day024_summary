@@ -1,0 +1,21 @@
+了解 Two Stage 為何通常擁有較高的精度。
+--> One Stage 方法僅在 Feature Map 利用預設的 ancor box 作微調
+    因此對於小物體往往比較不敏感
+    而 Two Stage 模型都有包含精細的 Region Proposal 的步驟 
+    得到的區域較明確 因此精度較高
+    缺點就是需要相比之下訓練/推論非常慢
+
+了解 One Stage 的 Default Anchor Box 概念
+--> 對比於 Two Stage 完全利用 Segmentation 相似度的演算法來做 RP
+    Two Stage 概念上則是預先設定 Ancor Box 數量
+    在卷積後的 Feature Map 逐一在各像素中心點比對調整合適的 BBOX 大小 (藉由計算是否有物件的 confidence)
+    因此計算上會比直接硬做 RP 來得更快
+
+了解 SSD 相較於 YoloV1 的優勢。
+--> YoloV1 僅在最後一層 Feature Map 使用兩個 Ancor Box (49*2)
+    SSD 則在每一層的 Feature Map 使用多個 Ancor Box (total 8732 in original paper)
+    因此達到了多尺度預測，對⼩小物件更更敏感。
+
+了解 Focal Loss 設計的核心理念，如何處理易分類樣品與類別不均
+--> Focal Loss 為 Cross Entropy 的變形，一般的 Cross Entropy 每個分類都佔有相等的權重
+    Focal Loss 則引入 gamma 超參數，當預測機率值（ (1-pt)r ）越高( 易分類樣品 )，其所獲得的權重會越低，藉此抑制易分類的背景框
