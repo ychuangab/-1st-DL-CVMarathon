@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/homework/D29-D31/Object Detection 程式導讀 /Faster_RCNN_Keras" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/homework/sample_code/D29-D31/Object Detection 程式導讀 /Faster_RCNN_Keras" vcs="Git" />
   </component>
 </project>
